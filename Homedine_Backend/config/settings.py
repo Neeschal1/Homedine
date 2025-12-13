@@ -24,6 +24,7 @@ INSTALLED_APPS = [
 ADDITIONAL_APPS = [
     'apps.userverification',
     'apps.products',
+    'rest_framework'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + ADDITIONAL_APPS
