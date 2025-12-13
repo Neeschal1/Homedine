@@ -1,5 +1,9 @@
 import random
 from django.core.mail import send_mail
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 def get_otp(firstname, email):
     otp_code = random.randint(100000, 999999)
@@ -42,7 +46,7 @@ def get_otp(firstname, email):
     send_mail(
         subject=subject,
         message=message,
-        from_email='homedine57@gmail.com',
+        from_email = os.getenv('EMAIL_USER'),
         recipient_list=[email],
         fail_silently=False,
         html_message=html_message
