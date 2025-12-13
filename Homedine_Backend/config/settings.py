@@ -30,7 +30,8 @@ ADDITIONAL_APPS = [
     'apps.products',
     'apps.review',
     'rest_framework',
-    'cloudinary'
+    'cloudinary',
+    'cloudinary_storage'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + ADDITIONAL_APPS
