@@ -111,17 +111,15 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
+
 cloudinary.config(
-    cloud_name = 'dghccliaa',
-    api_key = '551796215998763',
-    api_secret = 'R6usOfoOnNTj6E4hetrSfh8DtLU'
+    cloud_name = os.getenv('CLOUD_NAME'),
+    api_key = os.getenv('API_kEY'),
+    api_secret = os.getenv('API_SECRET')
 )
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
