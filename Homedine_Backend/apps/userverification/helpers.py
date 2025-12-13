@@ -18,7 +18,6 @@ def get_otp(firstname, email):
                 Thank you for joining our Homedine community!
                 """
 
-    # HTML version
     html_message = f"""
                         <html>
                             <body style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">

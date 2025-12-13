@@ -63,25 +63,30 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
         
 class OTPVerificationSerializers(serializers.Serializer):
     Email = serializers.CharField()
-    OTP = serializers.IntegerField()
+    OTP = serializers.IntegerField(write_only = True)
+    User_Is_Verified = serializers.IntegerField(read_only = True)
 
     def validate(self, data):
         email = data.get('Email')
         user_typed_otp = data.get('OTP')
+        isvaliduser = data.get('User_Is_Verified')
         
         try:
             user = UserAccountSignup.objects.get(Email=email)
         except UserAccountSignup.DoesNotExist:
             raise ValidationError("User not found")
 
-        if user.OTP != user_typed_otp:                    
+        if user.OTP != user_typed_otp:
             raise ValidationError("OTP does not match")
 
-        self.user = user           
+        self.user = user
         return data
     
     def create(self, validated_data):
         self.user.OTP = None
         self.user.User_Is_Verified = True
         self.user.save()
-        return self.user
+        return {
+            "Email": self.user.Email,
+            "User_Is_Verified": self.user.User_Is_Verified
+        }

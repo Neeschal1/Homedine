@@ -4,7 +4,6 @@ from .models import UserAccountSignup
 from .serializers import UserAccountSignupSerializers, OTPVerificationSerializers
 from rest_framework import generics
 
-
 def userhome(request):
     return HttpResponse("This is User Verification Defaule Backend Page. Welcome :)")
 
@@ -16,7 +15,7 @@ class UserAccountSignupSerializersRetrieveUpdateDestroyAPIView(generics.Retrieve
     queryset = UserAccountSignup.objects.all()
     serializer_class = UserAccountSignupSerializers
 
-class OTPVerificationSerializersListCreateAPIView(generics.ListCreateAPIView):
+class OTPVerificationSerializersCreateAPIView(generics.CreateAPIView):
     queryset = UserAccountSignup.objects.all()
     serializer_class = OTPVerificationSerializers
     
