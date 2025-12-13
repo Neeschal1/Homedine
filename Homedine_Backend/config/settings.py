@@ -21,6 +21,13 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ]
 
+ADDITIONAL_APPS = [
+    'apps.userverification',
+    'apps.products',
+]
+
+INSTALLED_APPS = INSTALLED_APPS + ADDITIONAL_APPS
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
