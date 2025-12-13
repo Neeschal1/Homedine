@@ -4,6 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.userhome, name='userhome'),
     path('createaccount/', views.UserAccountSignupSerializersListCreateAPIView.as_view(),name='UserAccountSignupSerializersListCreateAPIView'),
-    path('modifyaccount/<int:pk>/', views.UserAccountSignupSerializersRetrieveUpdateDestroyAPIView.as_view(), name='UserAccountSignupSerializersRetrieveUpdateDestroyAPIView')
+    path('modifyaccount/<int:pk>/', views.UserAccountSignupSerializersRetrieveUpdateDestroyAPIView.as_view(), name='UserAccountSignupSerializersRetrieveUpdateDestroyAPIView'),
+    path('createaccount/otp/', views.OTPVerificationSerializersListCreateAPIView.as_view(), name='OTPVerificationSerializersListCreateAPIView')
 ]
 
