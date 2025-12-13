@@ -1,3 +1,5 @@
 from django.db import models
 
-# Create your models here.
+class UserReview(models.Model):
+    Users_Full_Name = models.CharField(max_length=50)
+    

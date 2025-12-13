@@ -2,6 +2,10 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
 load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,7 +29,8 @@ ADDITIONAL_APPS = [
     'apps.userverification',
     'apps.products',
     'apps.review',
-    'rest_framework'
+    'rest_framework',
+    'cloudinary'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + ADDITIONAL_APPS
@@ -62,6 +67,14 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": "mydatabase",
+#     }
+# }
 
 DATABASES = {
     "default": {
@@ -103,6 +116,14 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+cloudinary.config(
+    cloud_name = 'dghccliaa',
+    api_key = '551796215998763',
+    api_secret = 'R6usOfoOnNTj6E4hetrSfh8DtLU'
+)
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 # Static files (CSS, JavaScript, Images)

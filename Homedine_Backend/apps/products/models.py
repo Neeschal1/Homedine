@@ -1,4 +1,5 @@
 from django.db import models
+from cloudinary.models import CloudinaryField
 
 class Products(models.Model):
     PROD_CHOICE = [
@@ -18,6 +19,7 @@ class Products(models.Model):
         ('PET', 'PET SUPPLIES'),
         ('AUT', 'AUTOMOTIVE'),
     ]
+    Product_Image = CloudinaryField('image', blank = True, null = True)
     Product_Name = models.CharField(max_length=40)
     Product_Category = models.CharField(max_length=3, choices=PROD_CHOICE)
     Product_Description = models.TextField()
