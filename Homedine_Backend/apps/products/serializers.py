@@ -5,7 +5,7 @@ class ProductsSerializers(serializers.ModelSerializer):
     class Meta:
         model = Products
         fields = '__all__'
-        mk_dir = {
+        extra_kwargs = {
             'Product_Name' : {
                 'required' : True
             },

@@ -10,4 +10,3 @@ class UserAccountSignup(models.Model):
     
     def __str__(self):
         return self.First_Name
-    
