@@ -77,11 +77,11 @@ class OTPVerificationSerializers(serializers.Serializer):
         if user.OTP != user_typed_otp:                    
             raise ValidationError("OTP does not match")
 
-        self.user = user                    
+        self.user = user           
         return data
     
     def create(self, validated_data):
         self.user.OTP = None
         self.user.User_Is_Verified = True
         self.user.save()
-        return self.user.First_Name
+        return self.user
