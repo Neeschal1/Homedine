@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import UserAccountSignup, UserOTPVerification
-from .serializers import UserAccountSignupSerializers, UserOTPVerificationSerializers
+from .serializers import UserAccountSignupSerializers, UserOTPVerificationSerializers, UserLoginSerializers
 from rest_framework import generics
 
 def userhome(request):
@@ -18,3 +18,7 @@ class UserAccountSignupSerializersRetrieveUpdateDestroyAPIView(generics.Retrieve
 class UserOTPVerificationSerializersView(generics.CreateAPIView):
     queryset = UserOTPVerification.objects.all()
     serializer_class = UserOTPVerificationSerializers
+    
+class UserLoginSerializersView(generics.CreateAPIView):
+    queryset = UserAccountSignup.objects.all()
+    serializer_class = UserLoginSerializers
