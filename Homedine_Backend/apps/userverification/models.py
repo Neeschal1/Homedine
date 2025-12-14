@@ -6,7 +6,7 @@ class UserAccountSignup(models.Model):
     First_Name = models.CharField(max_length=25)
     Last_Name = models.CharField(max_length=25)
     Email = models.EmailField(unique=True)
-    Password = models.CharField(max_length=128)
+    Hashed_Password = models.CharField(max_length=128)
     User_Is_Verified = models.BooleanField(default=False)
     
     def __str__(self):

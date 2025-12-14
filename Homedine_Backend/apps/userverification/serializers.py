@@ -13,7 +13,7 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
             'First_Name',
             'Last_Name',
             'Email',
-            'Password',
+            'Hashed_Password',
         ]
         extra_kwargs = {
             'First_Name' : {
@@ -25,25 +25,25 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
             'Email' : {
                 'required' : True
             },
-            'Password' : {
+            'Hashed_Password' : {
                 'required' : True,
                 'write_only' : True
             }
         }
         
     def create(self, validated_data):
-        password = validated_data.get('Password')
+        password = validated_data.get('Hashed_Password')
         name = validated_data.get('First_Name')
         email = validated_data.get('Email')
         
-        validated_data['Password'] = make_password(password)
+        validated_data['Hashed_Password'] = make_password(password)
         
         user = UserAccountSignup.objects.create(
             Users_Profile_Picture = validated_data['Users_Profile_Picture'],
             First_Name = validated_data['First_Name'],
             Last_Name = validated_data['Last_Name'],
             Email = validated_data['Email'],
-            Password = validated_data['Password'],
+            Hashed_Password = validated_data['Hashed_Password'],
             User_Is_Verified = False
         )
         
