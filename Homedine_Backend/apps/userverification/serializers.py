@@ -61,6 +61,8 @@ class UserAccountSignupSerializers(serializers.ModelSerializer):
         )
         return user
         
+        
+        
 class OTPVerificationSerializers(serializers.Serializer):
     Email = serializers.CharField()
     OTP = serializers.IntegerField(write_only = True)
@@ -90,3 +92,84 @@ class OTPVerificationSerializers(serializers.Serializer):
             "Email": self.user.Email,
             "User_Is_Verified": self.user.User_Is_Verified
         }
+        
+        
+        
+class UserLoginSerializers(serializers.Serializer):
+    Email = serializers.EmailField(required = True)
+    Password = serializers.CharField(write_only = True, required = True)
+    
+    def validate(self, data):
+        try:
+            user = UserAccountSignup.objects.get(Email = data['Email'])
+        except UserAccountSignup.DoesNotExist:
+            raise ValidationError("Create an account first!")
+        
+        if not check_password(data['Password'], user.Password):
+            raise ValidationError("Invalid Credentials!")
+        
+        if not user.User_Is_Verified:
+            raise ValidationError("Your account is not verified yet. We are sorry!")
+        
+        self.user = user
+        return user
+    
+    
+    
+    
+    
+    # class Meta:
+    #     model = UserAccountSignup
+    #     fields = ['Email', 'Password']
+    #     extra_kwargs = {
+    #         'Email' : {
+    #             'required' : True
+    #         },
+    #         'Password' : {
+    #             'required' : True
+    #         }
+    #     }
+        
+    # def create(self, validated_data):
+    #     email = validated_data.get('Email')
+    #     password = validated_data.get('Password')
+        
+    #     try:
+    #         user = UserAccountSignup.objects.get(Email = email)
+    #     except UserAccountSignup.DoesNotExist:
+    #         raise ValidationError("Account does not found. Please create a new account in order to log in!")
+        
+    #     if not check_password(password, user.Password):
+    #         raise ValidationError("Invalid Credentials!!!")
+        
+    #     if not user.User_Is_Verified:
+    #         raise ValidationError("You are not our verified user. We are sorry!!!")
+        
+    #     validated_data['user'] = user
+    #     return validated_data
+        
+    # Email = serializers.EmailField(required = True)
+    # Password = serializers.CharField(required = True, write_only = True)
+    
+    # def validate(self, data):
+    #     email = data.get('Email')
+    #     password = data.get('Password')
+        
+    #     try:
+    #         user = UserAccountSignup.objects.get(Email = email)
+    #     except UserAccountSignup.DoesNotExist:
+    #         raise ValidationError("Account does dot exista. Please signup a new account.")
+        
+    #     if not check_password(password, user.Password):
+    #         raise ValidationError("Invalid credentials!")
+        
+    #     if not user.User_Is_Verified:
+    #         raise ValidationError("You are not a verified user. So, you cannot log in. Sorry!!!")
+        
+    #     self.user = user
+    #     return data
+        
+    # def create(self, validated_data):
+    #     return {
+    #         "Message": f"Hi {self.user.First_Name}, how are you?",
+    #     }
