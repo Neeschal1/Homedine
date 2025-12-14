@@ -31,7 +31,8 @@ ADDITIONAL_APPS = [
     'apps.review',
     'rest_framework',
     'cloudinary',
-    'cloudinary_storage'
+    'cloudinary_storage',
+    'django_extensions'
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + ADDITIONAL_APPS
