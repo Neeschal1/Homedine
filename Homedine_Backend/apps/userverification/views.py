@@ -47,27 +47,3 @@ class UserLoginSerializersView(APIView):
                 'Message' : f'Hi, {user.First_Name}! How are you?'
             }
         )
-# def validate(self, data):
-#         email = data.get('Email')
-#         password = data.get('Password')
-        
-#         try:
-#             user = UserAccountSignup.objects.get(Email = email)
-#         except UserAccountSignup.DoesNotExist:
-#             raise ValidationError("Register an account to log in!!!")
-        
-#         db_password = user.Hashed_Password
-#         if not check_password(password, db_password):
-#             raise ValidationError("Invalid Credentials!")
-        
-#         if not user.User_Is_Verified:
-#             raise ValidationError('We are really sorry. You are not our verified member!')
-        
-#         self.user = user
-#         return data
-    
-#     def create(self, validated_data):
-#         return {
-#             "Email": self.user.Email,
-#             "Message": f"Hey {self.user.First_Name}, You are logged in!"
-#         }

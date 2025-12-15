@@ -29,6 +29,7 @@ ADDITIONAL_APPS = [
     'apps.userverification',
     'apps.products',
     'apps.review',
+    'apps.productcategories',
     'rest_framework',
     'cloudinary',
     'cloudinary_storage',

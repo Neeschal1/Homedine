@@ -7,5 +7,6 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('userverification/', include('apps.userverification.urls')),
     path('products/', include('apps.products.urls')),
-    path('review/', include('apps.review.urls'))
+    path('review/', include('apps.review.urls')),
+    path('productcategories/', include('apps.productcategories.urls'))
 ]
