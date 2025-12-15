@@ -24,7 +24,8 @@ class ProductCategories(models.Model):
         ('SERVINGSET', 'Eco Serving Set'),
     ]
     
-    Category_Name = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
+    Category = models.CharField(max_length=20, choices=CATEGORY_CHOICES, blank=True, null=True)
+    Category_Name = models.CharField(max_length=30, blank=True, null=True)
     Category_Picture = CloudinaryField('image')
     
     def __str__(self):
